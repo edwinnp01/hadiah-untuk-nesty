@@ -158,6 +158,62 @@
             50% { transform: scale(1.15); }
             100% { transform: scale(1); }
         }
+
+        /* ================================================== */
+        /* [REVISI UKURAN] CSS KHUSUS TAMPILAN HP (RESPONSIVE) */
+        /* ================================================== */
+        @media (max-width: 768px) {
+         /* Aturan di dalam sini hanya aktif di layar kecil */
+
+        /* --- Ukuran Font Judul Utama --- */
+        .main-title {
+            font-size: 1.8em; /* Judul utama di setiap bagian dikecilkan */
+        }
+
+        /* --- Ukuran di Kartu Ucapan Selamat Final --- */
+        .final-header-card {
+            padding: 20px 15px; /* Ruang di dalam kartu dikurangi sedikit */
+        }
+        .final-greeting {
+            font-size: 1.6rem; /* Ukuran "Halo, Nesty..." */
+        }
+        .final-main-title {
+            font-size: 1.9rem; /* Ukuran "Selamat Sidang" */
+            line-height: 1.3;
+        }
+        .final-poem {
+            font-size: 0.95rem; /* Ukuran puisi */
+        }
+        .final-subtitle {
+            font-size: 0.8rem; /* Ukuran "YOUR HARD WORK..." */
+        }
+
+        /* --- Ukuran di Kartu Pesan Personal --- */
+        .message-title {
+            font-size: 1.5rem; /* Judul di setiap pesan dikecilkan */
+        }
+        .message-body {
+            font-size: 1rem; /* Ukuran teks pesan disesuaikan */
+            min-height: auto; /* Tinggi minimum dihapus agar menyesuaikan konten */
+            padding-bottom: 20px;
+        }
+
+        /* --- Ukuran di Kartu Ucapan Keluarga/Teman --- */
+        .greeting-card .card-title {
+            font-size: 1.3rem; /* Judul ucapan dikecilkan */
+        }
+        .greeting-card .card-text {
+            font-size: 0.9rem; /* Teks ucapan dikecilkan */
+        }
+        .greeting-card img {
+            height: 300px; /* Tinggi bingkai foto dibuat lebih kecil di HP */
+        }
+
+        /* --- Ukuran di Pre-loader --- */
+        #preloader-text {
+            font-size: 1.2rem; /* Teks pembuka disesuaikan */
+        }
+    }
     </style>
 </head>
 <body>
@@ -225,14 +281,14 @@
                     <p class="final-poem">✨ "Kamu berhasil membuka semuanya. Kita selalu mengutuk Purwakarta, tapi di sinilah kita bisa bertemu hingga akhirnya bersama sampai lebih dari Selamanya." ✨</p>
                     <hr class="my-4">
                     <h2 class='final-main-title'>
-                        🎉 Selamat Sidang 🎉<br>Nesty Ermin Nadhirah <span class="unofficial-tag">(Unofficially)!</span><br>
+                        🎉Selamat atas Sidang Skripsi-mu🎉<br>Nesty Ermin Nadhirah <span class="unofficial-tag">(Unofficially)!</span><br>
                         <span class="degree-tag">✨ S.Pd ✨</span>
                     </h2>
                     <p class="final-subtitle">Your hard work shines brightest today!</p>
                 </div>
 
                 <div class="text-center my-4">
-                    <button id="secret-message-btn" class="btn btn-danger">💌 Buka Pesan Rahasia Edwin</button>
+                    <button id="secret-message-btn" class="btn btn-danger">💌 Buka Pesan Rahasia Edwin (Klik ini!)</button>
                     <div id="secret-message-content" class="alert alert-success mt-3 d-none"></div>
                 </div>
                 <p style='text-align: center; font-size: 16px; margin-top: 30px;'>
@@ -287,6 +343,13 @@
                         <div class="card-body">
                             <h5 class="card-title">Ucapan Selamat dari A Aji & Teh Uni</h5>
                             <p class="card-text">"Selamat atas sidang skripsinyaa Deeeee !! , Ingat semua kerja kerasmu, jangan lupa tersenyum dan percaya diri , Saatnya bersantai dan beristirahat sejenak setelah menyelesaikan skripsi yang begitu menguras mental dan tenaga ini 😁<br>Semoga selalu dilancarkan untuk mempersiapkan mental dan tenaga dalam menghadapi perjalanan yang selanjutnya🤍<br><br>Kita bangga atas semua pencapaian yg ade dapat 🥰 tetap semangat terus berusaha dan berjuang dalam mengahadapi dunia yang fana ini"</p>
+                        </div>
+                    </div>
+                    <div class="greeting-card">
+                         <img src="assets/ucapan_keponakan.jpg" alt="Ucapan dari Radit, Rais & Arya" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">Ucapan Selamat dari Radit, Rais & Arya</h5>
+                            <p class="card-text">"Halo ateu etii, kita bangga liat etii, Sukses terus yaa ateu etii, kita sayang ateuu"</p>
                         </div>
                     </div>
                     <div class="greeting-card">
@@ -623,8 +686,9 @@
             
             const sentences = [
                 "Sebuah Hadiah dari laki-laki yang hanya mampu meng-gadai dirinya untuk wanita yang ia Cintai...",
-                "Website ini kubuat hanya untukmu, Seorang Wanita yang menyelamatkan ku dari kekosongan jiwa dan kesepian batin...",
-                "Halo Nesty, Ini kubuat untukmu, hanya untukmu, semoga kamu suka, seperti biasa, kalau gak butuh... ya buang aja."
+                "In Colaborate with...",
+                "Teh Tia, A Aji, Teh Uni, A Agus, Rais, Arya, Radit, Pramudita, Eka",
+                "Halo Nesty, This Website made with love and by Edwin itself, just for u, as always, kalau gak butuh... buang aja ya."
             ];
 
             renderPhoto();
@@ -712,7 +776,7 @@
         });
         
         document.getElementById('reply-btn').addEventListener('click', (e) => {
-            const defaultMessage = "Halo Nesty, aku adalah web yang tadi, ubah pesan ini sesuai apa yang kamu rasa & Pikirkan soal hadiah dari Edwin ya, Sttt jangan kasih tau Edwin, dia buat kode ini 800 Line koding sendiri tau hihi";
+            const defaultMessage = "Halo Nesty, aku adalah web yang tadi, ubah pesan ini sesuai apa yang kamu rasa & Pikirkan soal hadiah dari Edwin ya, Sttt jangan kasih tau Edwin, dia buat kode ini 797 Line Pakai HTML, CSS dan Javascript sendiri tau hihi";
             const encodedMessage = encodeURIComponent(defaultMessage);
             const whatsappUrl = `https://wa.me/6281221874008?text=${encodedMessage}`;
             document.getElementById('whatsapp-link').href = whatsappUrl;
