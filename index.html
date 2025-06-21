@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Nesty 💖</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Playfair+Display:ital,wght@1,700&family=Pacifico&display=swap" rel="stylesheet">
+
+    <style>
+        body { 
+            background-color: #fff5f8; 
+            font-family: 'Poppins', 'Helvetica Neue', sans-serif; 
+            color: #333333; 
+            overflow-x: hidden;
+            cursor: default;
+        }
+        .main-container {
+            max-width: 720px;
+            margin: auto;
+            padding: 20px;
+            position: relative;
+            z-index: 5;
+        }
+        .page { display: none; }
+        .page.active { display: block; }
+        .main-title { 
+            text-align: center !important; 
+            color: #e91e63; 
+            font-size: 2.2em; 
+            margin-bottom: 25px; 
+            font-family: 'Playfair Display', serif;
+        }
+        .kebun-bunga-closing { text-align: center; font-size: 1.1em; margin-top: 20px; line-height: 1.6; }
+        
+        .final-signature {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .closing-main {
+            font-size: 1.1rem;
+            color: #444;
+        }
+        .closing-name-recipient {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #e91e63;
+            margin-top: 8px;
+        }
+        .closing-final-note {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: #777;
+            margin-top: 8px;
+        }
+
+        .quiz-option .form-check-input:checked { background-color: #e91e63; border-color: #e91e63; }
+
+        .message-card {
+            display: none; padding: 25px; border-radius: 15px; background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); text-align: center; animation: fadeIn 0.8s ease-in-out;
+            overflow: hidden;
+        }
+        .message-card.active { display: block; }
+        .message-icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .message-title {
+            font-family: 'Playfair Display', serif; color: #e91e63;
+            font-size: 1.8rem; margin-bottom: 15px;
+        }
+        .message-body { font-size: 1.1rem; line-height: 1.7; color: #555; text-align: left; min-height: 250px; }
+        
+        .typewriter-cursor {
+            display: inline-block;
+            background-color: #555;
+            width: 3px;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { background-color: transparent; }
+            50% { background-color: #555; }
+        }
+
+        .floating-element { position: fixed; z-index: 9999; pointer-events: none; animation: floatUpAndFade 4s ease-out forwards; }
+        .floating-element.heart { font-size: 2rem; animation-duration: 3s; }
+        .floating-element.word {
+            font-family: 'Pacifico', cursive; padding: 5px 12px; border-radius: 15px;
+            background: rgba(255, 105, 180, 0.8); color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); font-size: 1.5rem;
+        }
+        @keyframes floatUpAndFade { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-150px) scale(0.5); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .gallery-nav-btn {
+            position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; border-radius: 50%;
+            width: 45px; height: 45px; font-size: 1.2rem; font-weight: bold; background-color: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(220, 53, 69, 0.5); color: #dc3545; opacity: 0; transition: opacity 0.3s ease;
+        }
+        .gallery-wrapper:hover .gallery-nav-btn { opacity: 1; }
+        .gallery-nav-prev { left: 15px; }
+        .gallery-nav-next { right: 15px; }
+        
+        .final-header-card {
+            background: linear-gradient(145deg, #ffffff, #fff9fb); padding: 30px 20px;
+            border-radius: 20px; box-shadow: 0 8px 25px rgba(233, 30, 99, 0.1);
+            text-align: center; margin-bottom: 40px;
+        }
+        .final-greeting { font-family: 'Pacifico', cursive; color: #ff69b4; font-size: 2rem; margin-bottom: 20px; }
+        .final-main-title { font-family: 'Playfair Display', serif; color: #d81b60; font-weight: 700; font-size: 2.5rem; line-height: 1.2; }
+        .final-main-title .unofficial-tag { font-size: 1rem; color: #e91e63; font-weight: bold; }
+        .final-main-title .degree-tag { font-family: 'Poppins', sans-serif; font-weight: bold; color: #58a6ff; }
+        .final-subtitle { font-size: 0.9rem; color: #777; margin-top: 5px; letter-spacing: 1px; text-transform: uppercase; }
+        .final-poem { font-family: 'Poppins', sans-serif; font-style: italic; font-size: 1.1rem; color: #666; margin-top: 25px; line-height: 1.8; }
+        
+        .trail {
+            position: fixed; height: 8px; width: 8px; border-radius: 50%;
+            background: #ff69b4; z-index: 10000; pointer-events: none;
+            transition: transform 0.2s, opacity 0.3s; transform-origin: center center;
+        }
+        
+        .modal-content { border-radius: 15px; }
+
+        .greeting-card {
+            background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            margin-bottom: 25px; overflow: hidden;
+        }
+        .greeting-card .card-body { padding: 20px; }
+        .greeting-card .card-title { font-family: 'Playfair Display', serif; color: #e91e63; font-size: 1.5rem; }
+        .greeting-card .card-text { font-size: 1rem; line-height: 1.6; color: #555; font-style: italic; }
+        .greeting-card img { width: 100%; height: auto; object-fit: cover; /* Ini adalah 'sihirnya' */}
+
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #fff5f8; z-index: 10000; display: flex;
+            justify-content: center; align-items: center; transition: opacity 1s ease-in-out;
+        }
+        .preloader-content {
+            text-align: center; color: #e91e63; width: 90%; max-width: 600px;
+        }
+        #preloader-text {
+            font-family: 'Playfair Display', serif; font-size: 1.4rem; line-height: 1.6;
+            margin-top: 20px; opacity: 0; transition: opacity 1s ease-in-out;
+            min-height: 100px;
+        }
+        #start-experience-btn {
+            transition: opacity 1s ease-in-out;
+        }
+        .pulsing-heart {
+            font-size: 4rem; animation: pulse 1.5s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="pulsing-heart">💖</div>
+            <p id="preloader-text"></p>
+            <button id="start-experience-btn" class="btn btn-danger btn-lg mt-4" style="opacity: 0; display: none;">Buka Hadiahmu</button>
+        </div>
+    </div>
+
+    <audio id="background-music" loop>
+        <source src="assets/lagu_nesty.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="main-container" style="display: none;">
+        <div id="start-page" class="page">
+            <div class="text-center">
+                <h2 class="main-title" style="font-size: 2.5em;">💘 Untuk Nesty 💘<br>Perjalanan Cinta & Bangga-ku Padanya</h2>
+                <p class="lead">Sebelum kamu buka semua isinya, ada kuis pemanasan dulu ya!</p>
+                <hr class="my-4">
+                <div id="audio-player-box" class="mb-4">
+                    <p class="text-center" style="color: #e91e63;">Musiknya sudah berputar, manis... 🎶</p>
+                    <div class="accordion" id="accordionLagu">
+                        <div class="accordion-item"><h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">Kenapa lagu ini?</button>
+                        </h2><div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionLagu"><div class="accordion-body">
+                            Aku bukan tipe orang yang punya 'lagu favorit', itu konsep yang tidak logis.<br><br>
+                            Tapi, jika harus ada justifikasi rasional, lagu ini secara efisien selalu memicu satu <i>output</i> yang sama: ingatan tentang senyummu. Senyum yang entah kenapa menjadi satu-satunya variabel yang bisa men-debug kehidupanku yang penuh <i>error</i> ini, tidak peduli cuacanya sedang hujan atau badai.<br><br>
+                            Mungkin ini hanya delusi seorang penyendiri. Tapi kalau delusi ini membuat segalanya sedikit lebih baik, kurasa aku tidak akan mempermasalahkannya.
+                        </div></div></div>
+                    </div>
+                </div>
+                <button id="start-quiz-btn" class="btn btn-danger btn-lg">Mulai Kuis Pemanasan!</button>
+            </div>
+        </div>
+        
+        <div id="quiz-page" class="page">
+            <h2 class="text-center main-title" style="font-size: 1.8em;">💘 Kuis Interaktif Buat Nesty</h2>
+            <div class="progress mb-4" role="progressbar"><div id="progress-bar" class="progress-bar bg-danger" style="width: 0%"></div></div>
+            <div id="quiz-content"></div>
+        </div>
+        
+        <div id="results-page" class="page text-center">
+            <h2 class="main-title">Hasil Kuis</h2>
+            <div id="result-text" class="lead"></div>
+            <button id="open-treasure-btn" class="btn btn-danger btn-lg d-none">Buka Harta Karun! ✨</button>
+            <button id="retry-quiz-btn" class="btn btn-secondary btn-lg d-none">Ulangi Kuis dari Awal</button>
+        </div>
+        
+        <div id="final-content-page" class="page">
+            
+            <div id="messages-section">
+                <div id="messages-container"></div>
+                <p id="message-progress" class="text-center text-muted mt-3"></p>
+                <div class="d-flex justify-content-between mt-3">
+                    <button id="prev-message-btn" class="btn btn-outline-danger">< Pesan Sebelumnya</button>
+                    <button id="next-message-btn" class="btn btn-danger">Pesan Berikutnya ></button>
+                </div>
+            </div>
+            
+            <div id="remaining-content" style="display: none; animation: fadeIn 1.2s;">
+                <div class="final-header-card">
+                    <p class="final-greeting">Halo, Nesty, Sang-Segalanya Edwin 💖</p>
+                    <p class="final-poem">✨ "Kamu berhasil membuka semuanya. Kita selalu mengutuk Purwakarta, tapi di sinilah kita bisa bertemu hingga akhirnya bersama sampai lebih dari Selamanya." ✨</p>
+                    <hr class="my-4">
+                    <h2 class='final-main-title'>
+                        🎉 Selamat Sidang 🎉<br>Nesty Ermin Nadhirah <span class="unofficial-tag">(Unofficially)!</span><br>
+                        <span class="degree-tag">✨ S.Pd ✨</span>
+                    </h2>
+                    <p class="final-subtitle">Your hard work shines brightest today!</p>
+                </div>
+
+                <div class="text-center my-4">
+                    <button id="secret-message-btn" class="btn btn-danger">💌 Buka Pesan Rahasia Edwin</button>
+                    <div id="secret-message-content" class="alert alert-success mt-3 d-none"></div>
+                </div>
+                <p style='text-align: center; font-size: 16px; margin-top: 30px;'>
+                    Jangan takut melangkah. Kamu nggak sendiri. Kamu punya dirimu, dan kamu punya aku, selalu 💌<br><br>
+                    <i>– penuh cinta - Edwin Pujiantoro.</i>
+                </p>
+                <hr>
+
+                <h4 style='text-align: center; color: #ff69b4; margin-top: 40px;'>Album Perjalanan Hebat Nesty 📸</h4>
+                <p style='text-align: center; font-size: 14px;'>Setiap foto ini, adalah bukti nyata dari kegigihan dan semangatmu. Aku saksinya!</p>
+                <div class="card my-3"><div class="card-body">
+                    <div class="gallery-wrapper position-relative">
+                        <img id="gallery-image" src="" class="img-fluid rounded" alt="Kenangan Manis" loading="lazy">
+                        <button id="prev-photo-btn" class="btn btn-danger gallery-nav-btn gallery-nav-prev"><</button>
+                        <button id="next-photo-btn" class="btn btn-danger gallery-nav-btn gallery-nav-next">></button>
+                    </div>
+                    <p id="gallery-caption" class="text-center mt-2"></p>
+                </div></div>
+                <hr>
+
+                <h4 style='text-align: center; color: #ff69b4; margin-top: 40px;'>Maaf belum bisa memberi kamu Bunga asli...</h4>
+                <img src="assets/kebun_bunga.png" class="img-fluid rounded" alt="Kebun Bunga Digital" loading="lazy">
+                <p class="text-center fst-italic mt-2">Mungkin ini bukan bunga asli, tapi cintanya lebih luas dari ini, lebih dari waktu 🤍</p>
+                <div class='kebun-bunga-closing'>
+                    "Mawar" selalu menggambarkan kesanku terhadap dirimu, ntah mengapa dengan warna cantiknya dia meraih banyak perhatian.<br>
+                    "Berduri" "Cantik" "Kuat" "Wangi" mungkin tidak menggambarkan seluruh Nesty, tapi kalau boleh memilih, kamu adalah satu satunya bunga yang akan ku Pilih.<br>
+                    Walau sepertinya ini tidak bisa menggambarkan rasa bangga-ku padamu secara eksplisit dengan hanya satu gambar ini saja.<br>
+                    Juga tidak akan pernah mampu menggantikan buket bunga nyata atau segala bentuk kemewahan duniawi untuk saat ini<br>
+                    yang mungkin bisa ditawarkan oleh orang lain yang lebih "mampu".<br><br>
+                    Namun, semoga kamu selalu mekar, seindah dan sekuat kebun bunga<br>
+                    yang tak lekang oleh waktu, dan kita juga semoga lebih lama daripada "selamanya".
+                </div>
+                <div class="final-signature">
+                    <p class="closing-main">Sekali lagi selamat, kesayangan, kepunyaan, segalanya-Edwin,</p>
+                    <p class="closing-name-recipient">Nesty Ermin Nadhirah, S.Pd.</p>
+                    <p class="closing-final-note">(Tunggu aku, sebentar lagi aku akan menyusulmu, seperti biasa.)</p>
+                </div>
+                <hr>
+                
+                <div id="greetings-section" class="mt-5">
+                    <h2 class="main-title" style="font-size: 2em;">Ikut Berbahagia Untukmu...</h2>
+                    
+                    <div class="greeting-card">
+                        <img src="assets/ucapan_teh_tia.jpg" alt="Ucapan dari Teh Tia" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">Ucapan Selamat dari Teh Tia & Keluarga</h5>
+                            <p class="card-text">"Bukan soal harapan,<br>Atau seorang pejuang<br>Tapi seorang adik yg selalu menjadi adik kecil bagi kakaknya,<br>Seorang adik yg selalu ingin dilindungi kakaknya,<br>Tapi hari ini, kakak mu ini.<br>Melihat adiknya yg berjuang sendiri,<br>Menempa setiap langkah masa depan nya , sendiri...<br>De...teteh bangga sama ade, sangat bangga. Melebihi kata bangga itu sendiri.<br>Doa terbaik hanya untuk adek,<br>Semoga ini menjadi awal kesuksesan, <br>Adek adalah harapan yg menjadi nyata bagi papa dan mama. <br>Adek adalah mimpi yg jadi kenyataan bagi teteh dan aa.<br>Love Adek❤"</p>
+                        </div>
+                    </div>
+                    <div class="greeting-card">
+                         <img src="assets/ucapan_teh_uni.jpg" alt="Ucapan dari Teh Uni & A Aji" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">Ucapan Selamat dari A Aji & Teh Uni</h5>
+                            <p class="card-text">"Selamat atas sidang skripsinyaa Deeeee !! , Ingat semua kerja kerasmu, jangan lupa tersenyum dan percaya diri , Saatnya bersantai dan beristirahat sejenak setelah menyelesaikan skripsi yang begitu menguras mental dan tenaga ini 😁<br>Semoga selalu dilancarkan untuk mempersiapkan mental dan tenaga dalam menghadapi perjalanan yang selanjutnya🤍<br><br>Kita bangga atas semua pencapaian yg ade dapat 🥰 tetap semangat terus berusaha dan berjuang dalam mengahadapi dunia yang fana ini"</p>
+                        </div>
+                    </div>
+                    <div class="greeting-card">
+                        <img src="assets/ucapan_keluarga_edwin.jpg" alt="Ucapan dari Keluarga Edwin" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">Ucapan Selamat dari Keluarga Edwin</h5>
+                            <p class="card-text">"Selamat ya, Nesty. Semoga ilmu dan perjuanganmu membawa berkah. Kami bangga dan ikut bahagia melihat pencapaianmu. Sehat selalu, dan semoga langkah ke depannya semakin dimudahkan. Maaf ya Edwin selalu merepotkan kamu, memang dia orang nya begitu, tolong dimaklumi ya. Salam hangat, Keluarga Edwin"</p>
+                        </div>
+                    </div>
+                    <div class="greeting-card">
+                        <img src="assets/ucapan_pramudita.jpg" alt="Ucapan dari Pramudita" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">Ucapan Selamat dari Pramudita</h5>
+                            <p class="card-text">"congrats on what you've been through nesterrr! kamu adalah sahabat sekaligus idolaku di kampus. bisa ketemu dan bersahabat sama kamu di dunia perkuliahan ini bener-bener pengalaman super menyenangkann. lalu akhirnya melihat kamu dititik ini dan sekeren ini setelah berhasil menamatkan semua level ujian perkuliahan tuh rasanya superrr duperr bangga.<br>all your hard work has been paid off and u deserve all of these loveee!! mari terus bersinarr sobi cimahikuuu"</p>
+                        </div>
+                    </div>
+                    <div class="greeting-card">
+                        <img src="assets/ucapan_eka.jpg" alt="Ucapan dari Eka" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">Ucapan Selamat dari Eka</h5>
+                            <p class="card-text">"Selamat Nesty atas pencapaiannya! Aku turut bangga dan bahagia. Perjuanganmu luar biasa, dan kamu pantas mendapatkan semua ini. Jangan pernah berhenti belajar dan berkarya. Selalu jadi inspirasi buat kita semua. Sukses terus untuk langkah selanjutnya!"</p>
+                        </div>
+                    </div>
+                    <div class="greeting-card">
+                        <img src="assets/ucapan_edwin.jpg" alt="Ucapan dari Edwin" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">Dan Tentu Saja, Dari Gweh 😎...</h5>
+                            <p class="card-text">"“Selamat, terima kasih, dan maaf.”<br><br>Kayaknya gak ada kata lain yang bisa aku ucapkan untuk menggambarkan betapa senangnya aku hari ini.<br><br>Maaf kalau aku cuma bisa membuat web sederhana ini untuk merayakan sidang skripsimu.<br><br>Maaf juga karena aku belum bisa seperti laki-laki lain yang bisa kasih bunga, hadiah, atau apapun yang mewah.<br><br>Tapi buatku, kamu itu segalanya — dan inilah caraku menunjukkan rasa banggaku padamu.<br><br>Selamat sayang. Selamat atas (unofficially) gelar S.Pd. kamu!<br><br>Semoga kamu suka ya. Tapi seperti biasa, kalau gak butuh... ya buang aja.<br><br>Aku tetap sayang kamu. Sekarang, besok, bahkan lebih dari Selamanya. 🌸"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <div id="reply-section" class="text-center my-4">
+                    <h4 style='text-align: center; color: #e91e63;'>Gimana? Suka ga? Xixixi</h4>
+                    <button id="reply-btn" class="btn btn-lg btn-danger">💌 Kirim Balasan untuk Edwin...</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="replyModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" style="font-family: 'Playfair Display', serif; color: #e91e63;">Kirim Pesan ke Edwin?</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <p>Kamu akan diarahkan ke WhatsApp untuk mengirim pesan langsung ke Edwin.</p>
+            <p class="mt-3"><i>Kasih kesan mu langsung ke Edwin ya, biar jadi rahasia kalian stttt😉</i></p>
+            <a id="whatsapp-link" href="#" class="btn btn-success btn-lg mt-3 w-100" target="_blank">
+              Lanjut ke WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <script>
+        // === DATA APLIKASI ===
+        const QUIZ_DATA = [
+            { q_num: 1, title: "Apa makanan favorit Edwin?", type: "radio", options: ["Nasi Padang", "Oven", "Bu Tati"], correct_answer: "Masakan Nesty 😚", secret_key: "q1_secret_revealed", secret_button_text: "Jawaban ini ga ada yang bener? 🤨" },
+            { q_num: 2, title: "Judul buku yang Edwin tulis?", type: "radio", options: ["Catatan Bucin", "Sajak Bahagia Bersamamu", "Sajak Kebohongan Dunia", "Tersesat dalam Rindu"], correct_answer: "Sajak Kebohongan Dunia" },
+            { q_num: 3, title: "Apakah Kita sama sama pernah jadi PSDO ?", type: "radio", options: ["Iya", "Tidak"], correct_answer: "Iya" },
+            { q_num: 4, title: "Apakah Kita sama sama pernah jadi Ketua Himpunan ?", type: "radio", options: ["Iya", "Tidak"], correct_answer: "Iya" },
+            { q_num: 5, title: "Warna Favorit Edwin ?", type: "radio", options: ["Merah", "Hitam", "Putih", "Semua Benar"], correct_answer: "Semua Benar" }
+        ];
+        
+        const MESSAGES_DATA = [
+            { icon: "💌", title: "Pesan Pertamaku untukmu", body: "Halo, Nesty. Mungkin ini bukan kata-kata yang mudah kuucapkan secara langsung, tapi kuharap ini bisa menyampaikan apa yang ada di hatiku. Sejak awal aku mengenalmu, ada sesuatu yang berbeda. Ada pancaran unik yang membuatku ingin terus belajar tentang dirimu. Aku ingat bagaimana pertama kali mataku terpaku padamu, pada senyummu yang selalu bisa menerangi hariku. Setiap detail kecil tentangmu, dari caramu berbicara hingga tawa renyahmu, semuanya adalah anugerah bagiku. Mungkin ini terdengar klise, tapi kau benar-benar mengubah caraku melihat dunia." },
+            { icon: "👀", title: "Awal Mula Aku Perhatikan Kamu", body: "Nona manis yang kuperhatikan dari jauh: kacamata bulat, gigi gingsul, postur ramping. Awalnya kamu hanya siluet di balik kesibukan, tapi semakin kuperhatikan, semakin nyata kehadiranmu di duniaku. Kita sama-sama PSDO, sama-sama pusing hadapi SK rektor. Kamu PGSD, aku Telekomunikasi. Kamu teladan, aku si pemalas logis. Tapi dari beda itu, kamu jadi magnet semesta kecilku. Kamu memberi warna dalam hidup yang monoton ini." },
+            { icon: "🌪️", title: "Kita Melawan Dunia", body: "Kita jadi ketua himpunan. Kamu di pendidikan, aku di teknik. Aku pikir kamu akan tenggelam di dunia laki-laki, tapi kamu malah mewarnainya. Kita berdua berdiri melawan fitnah, dari wakil direktur sampai masyarakat palsu. Kamu kehilangan teman, tapi kamu menemukan dirimu. Dan aku menyaksikannya, mencintainya. Ada luka di langkahmu, tapi juga keberanian yang tak pernah kau sadari sendiri." },
+            { icon: "🏆", title: "Saat Kamu Terus Bersinar", body: "Aku kalah pilpres, kamu tetap berdiri. Kamu lolos Kampus Mengajar, MSIB, bahkan jadi Caraka Kamjar. Sementara aku... gagal berkali-kali. Tapi kamu tetap menuntunku dengan cinta. Kamu masak, kamu kerja, kamu skripsi sambil nangis. Bahkan saat PTESOL gagal 5x, kamu bangkit lagi. Kamu nggak tahu betapa kuat kamu dilihat dari mata orang yang cinta padamu. Kamu bukan wanita biasa. Kamu rumah bagi seseorang yang terlalu sering tersesat." },
+            { icon: "🎓", title: "Hari Ini Kamu Sidang", body: "Aku nggak punya bunga, nggak punya uang, nggak punya hadiah mewah. Tapi aku punya satu hal: Aku menyaksikan semuanya. Dan kamu menang bukan karena kamu pintar, tapi karena kamu bertahan. Hari ini kamu sidang. Tapi bagiku kamu sudah lulus sejak kamu nggak menyerah. Sejak kamu memilih untuk tetap berdiri meski lututmu gemetar. Perjalananmu bukan hanya tentang gelar, Nesty, tapi tentang bagaimana kamu tumbuh dan menjadi pribadi yang luar biasa." },
+            { icon: "🌟", title: "Momen-momen Tak Terlupakan", body: "Setiap tawa, setiap canda, setiap obrolan larut malam, semuanya adalah harta bagiku. Momen-momen sederhana seperti saat kita makan di supiak kamba, ke mang eto. Bahkan kalau kamu ingat tempat bersejarah antara kita melawan dunia di dekat Rel itu wkwk. Ya even untuk sekadar menikmati hari bersama, itu semua tak ternilai. Kita selalu mengutuk Purwakarta, tapi disinilah kita bisa bertemu hingga akhirnya bersama sampai lebih dari Selamanya." },
+            { icon: "💫", title: "Masa Depan Kita", body: "Aku tahu kita masih punya banyak jalan yang harus dilalui, banyak rintangan yang mungkin akan datang. Tapi satu hal yang aku yakini, aku ingin melaluinya bersamamu. Aku ingin melihatmu terus bersinar, meraih impian-impianmu yang lebih besar lagi. Aku akan selalu ada di sisimu, mendukungmu, menjadi sandaranmu. Biarkan kita terus menulis cerita kita, halaman demi halaman, dengan cinta dan kebersamaan." }
+        ];
+
+        const FLOATING_WORDS = ["selamat!", "aku sayang kamu", "cie S.Pd", "kiw kiw cantik", "halo neng ahihihi", "Proud of you!", "Calon Ibu Guru nih yee", "Cantik banget pacarku", "My Nesty, My Everything", "Edwin Sayang Nesty"];
+        const TOTAL_PHOTOS = 45;
+
+        const state = {
+            currentPage: "start", currentQuestionIndex: 0, answers: {}, score: 0,
+            secrets: { q1_secret_revealed: false },
+            currentMessageIndex: 0, floatingInterval: null, photo_index: 0
+        };
+
+        const pages = document.querySelectorAll('.page');
+        const audio = document.getElementById('background-music');
+
+        let typewriterTimeout;
+        function typewriter(element, text, speed = 50) {
+            clearTimeout(typewriterTimeout);
+            let i = 0;
+            element.innerHTML = "";
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML = text.substring(0, i + 1) + '<span class="typewriter-cursor">&nbsp;</span>';
+                    i++;
+                    typewriterTimeout = setTimeout(type, speed);
+                } else {
+                    element.innerHTML = text; 
+                }
+            }
+            type();
+        }
+
+        const trails = [];
+        let trailIndex = 0;
+        function createTrail(e) {
+            if (trails.length < 20) {
+                const trail = document.createElement('div');
+                trail.className = 'trail';
+                document.body.appendChild(trail);
+                trails.push(trail);
+            }
+            const t = trails[trailIndex];
+            t.style.left = e.clientX + 'px';
+            t.style.top = e.clientY + 'px';
+            t.style.transform = 'scale(1)';
+            t.style.opacity = '1';
+            setTimeout(() => {
+                t.style.transform = 'scale(0)';
+                t.style.opacity = '0';
+            }, 500);
+            trailIndex = (trailIndex + 1) % trails.length;
+        }
+        let lastMove = 0;
+        window.addEventListener('mousemove', e => {
+            const now = Date.now();
+            if (now - lastMove > 16) {
+                createTrail(e);
+                lastMove = now;
+            }
+        });
+
+        function showPage(pageId) {
+            state.currentPage = pageId;
+            pages.forEach(page => { page.classList.remove('active'); });
+            document.getElementById(pageId).classList.add('active');
+        }
+        
+        function createFloatingElement() {
+            const element = document.createElement('div');
+            element.classList.add('floating-element');
+            if (Math.random() > 0.4) {
+                element.classList.add('heart');
+                element.innerHTML = ['💖', '❤️', '💕', '🥰', '😍', '😘'][Math.floor(Math.random() * 6)];
+            } else {
+                element.classList.add('word');
+                element.innerText = FLOATING_WORDS[Math.floor(Math.random() * FLOATING_WORDS.length)];
+            }
+            element.style.left = `${Math.random() * 90}vw`;
+            element.style.top = `${Math.random() * 90}vh`;
+            document.body.appendChild(element);
+            setTimeout(() => { element.remove(); }, 4000);
+        }
+
+        function startQuiz() {
+            const startBtn = document.getElementById('start-quiz-btn');
+            startBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Siap-siap...';
+            startBtn.disabled = true;
+            setTimeout(() => {
+                showPage('quiz-page');
+                renderQuestion();
+            }, 1000);
+        }
+
+        function renderQuestion() {
+            const quizContent = document.getElementById('quiz-content');
+            const question = QUIZ_DATA[state.currentQuestionIndex];
+            const q_key = `q${question.q_num}`;
+            let optionsHTML = '';
+            if (question.type === 'text') {
+                optionsHTML = `<input type="text" class="form-control" id="${q_key}" placeholder="Tulis jawabanmu di sini:">`;
+            } else {
+                const options = [...question.options];
+                if (question.secret_key && state.secrets[question.secret_key]) {
+                    if (!options.includes(question.correct_answer)) { options.push(question.correct_answer); }
+                }
+                optionsHTML = options.map((opt, i) => `
+                    <div class="form-check quiz-option mb-2">
+                        <input class="form-check-input" type="radio" name="${q_key}" id="${q_key}_${i}" value="${opt}">
+                        <label class="form-check-label" for="${q_key}_${i}">${opt}</label>
+                    </div>`).join('');
+            }
+            let secretButtonHTML = '';
+            if (question.secret_key && !state.secrets[question.secret_key]) {
+                 secretButtonHTML = `<button class="btn btn-link p-0 mt-3" onclick="revealSecret('${question.secret_key}')">${question.secret_button_text}</button>`;
+            }
+            let nextButtonHTML = '';
+            if (state.currentQuestionIndex < QUIZ_DATA.length - 1) {
+                nextButtonHTML = `<button class="btn btn-danger mt-4" onclick="nextQuestion()">Lanjut ➡️</button>`;
+            } else {
+                nextButtonHTML = `<button class="btn btn-danger mt-4" onclick="calculateScore()">Lihat Hasil & Buka Surat Cinta!</button>`;
+            }
+            quizContent.innerHTML = `
+                <div class="card"><div class="card-body">
+                    <h5 class="card-title">${question.title}</h5>
+                    <div class="mt-3">${optionsHTML}</div>
+                    ${secretButtonHTML}
+                </div></div>
+                <div class="text-center">${nextButtonHTML}</div>`;
+            const progress = ((state.currentQuestionIndex + 1) / QUIZ_DATA.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+            document.getElementById('progress-bar').innerText = `Pertanyaan ${state.currentQuestionIndex + 1}/${QUIZ_DATA.length}`;
+        }
+        
+        function revealSecret(secretKey) {
+            state.secrets[secretKey] = true;
+            renderQuestion();
+        }
+
+        function saveAnswer() {
+            const question = QUIZ_DATA[state.currentQuestionIndex];
+            const q_key = `q${question.q_num}`;
+            if (question.type === 'text') {
+                state.answers[q_key] = document.getElementById(q_key).value;
+            } else {
+                const selectedOption = document.querySelector(`input[name="${q_key}"]:checked`);
+                state.answers[q_key] = selectedOption ? selectedOption.value : null;
+            }
+        }
+
+        function nextQuestion() {
+            saveAnswer();
+            if (state.currentQuestionIndex < QUIZ_DATA.length - 1) {
+                state.currentQuestionIndex++;
+                renderQuestion();
+            }
+        }
+        
+        function calculateScore() {
+            saveAnswer();
+            let score = 0;
+            QUIZ_DATA.forEach(q => {
+                const q_key = `q${q.q_num}`;
+                const userAnswer = state.answers[q_key];
+                if (q.type === 'text') { if (userAnswer && userAnswer.trim() !== '') { score++; } }
+                else { if (userAnswer === q.correct_answer) { score++; } }
+            });
+            state.score = score;
+            showResults();
+        }
+
+        function showResults() {
+            showPage('results-page');
+            const resultText = document.getElementById('result-text');
+            const openBtn = document.getElementById('open-treasure-btn');
+            const retryBtn = document.getElementById('retry-quiz-btn');
+            resultText.innerHTML = `<h2>Skor Akhir Kamu: <strong>${state.score}/${QUIZ_DATA.length}</strong></h2>`;
+            if (state.score === QUIZ_DATA.length) {
+                resultText.innerHTML += `<p class="text-success">Kamu lulus 100%! Kamu emang segalanya bagi Edwin 😍💍.</p>`;
+                openBtn.classList.remove('d-none');
+                retryBtn.classList.add('d-none');
+                confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
+            } else {
+                let message = `Skormu ${state.score}/${QUIZ_DATA.length}. Sepertinya ada beberapa rahasia yang masih kusimpan 😉. Ayo coba lagi!`;
+                if (state.score >= 3) {
+                    message = `Hampir Sempurna (${state.score}/${QUIZ_DATA.length})! Kamu Detektif Cinta Sejati 🕵️‍♀️💕. Tinggal sedikit lagi!`;
+                }
+                resultText.innerHTML += `<p class="text-warning">${message}</p>`;
+                openBtn.classList.add('d-none');
+                retryBtn.classList.remove('d-none');
+            }
+        }
+        
+        function resetQuiz() {
+            Object.assign(state, {
+                currentPage: "start", currentQuestionIndex: 0, answers: {}, score: 0,
+                secrets: { q1_secret_revealed: false },
+                currentMessageIndex: 0
+            });
+            const startBtn = document.getElementById('start-quiz-btn');
+            startBtn.innerHTML = 'Mulai Kuis Pemanasan!';
+            startBtn.disabled = false;
+            document.getElementById('remaining-content').style.display = 'none';
+            document.getElementById('messages-section').style.display = 'block';
+            const replyBtn = document.getElementById('reply-btn');
+            if(replyBtn) replyBtn.disabled = false;
+            if(state.floatingInterval) clearInterval(state.floatingInterval);
+            showPage('start-page');
+        }
+
+        function initMessagePage() {
+            const container = document.getElementById('messages-container');
+            container.innerHTML = MESSAGES_DATA.map((msg, index) => `
+                <div class="message-card" data-message-index="${index}">
+                    <div class="message-icon">${msg.icon}</div>
+                    <h3 class="message-title">${msg.title}</h3>
+                    <p class="message-body"></p>
+                </div>`).join('');
+            renderCurrentMessage();
+        }
+
+        function renderCurrentMessage() {
+            document.querySelectorAll('.message-card').forEach(card => card.classList.remove('active'));
+            const activeCard = document.querySelector(`.message-card[data-message-index="${state.currentMessageIndex}"]`);
+            activeCard.classList.add('active');
+            
+            const bodyElement = activeCard.querySelector('.message-body');
+            const fullText = MESSAGES_DATA[state.currentMessageIndex].body;
+            typewriter(bodyElement, fullText);
+            
+            document.getElementById('message-progress').innerText = `Pesan ${state.currentMessageIndex + 1} dari ${MESSAGES_DATA.length}`;
+            const prevBtn = document.getElementById('prev-message-btn');
+            const nextBtn = document.getElementById('next-message-btn');
+            prevBtn.style.visibility = state.currentMessageIndex === 0 ? 'hidden' : 'visible';
+            if (state.currentMessageIndex === MESSAGES_DATA.length - 1) {
+                nextBtn.innerText = 'Lihat Album & Ucapan Lainnya! ✨';
+            } else {
+                nextBtn.innerText = 'Pesan Berikutnya >';
+            }
+        }
+
+        function renderPhoto() {
+            const img = document.getElementById('gallery-image');
+            const caption = document.getElementById('gallery-caption');
+            const imagePath = `assets/kenangan (${state.photo_index + 1}).jpg`;
+            img.src = imagePath;
+            caption.innerText = `Kenangan ${state.photo_index + 1} dari ${TOTAL_PHOTOS}`;
+        }
+
+        // === EVENT LISTENERS ===
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainContainer = document.querySelector('.main-container');
+            const preloader = document.getElementById('preloader');
+            const preloaderText = document.getElementById('preloader-text');
+            const startExperienceBtn = document.getElementById('start-experience-btn');
+            
+            const sentences = [
+                "Sebuah Hadiah dari laki-laki yang hanya mampu meng-gadai dirinya untuk wanita yang ia Cintai...",
+                "Website ini kubuat hanya untukmu, Seorang Wanita yang menyelamatkan ku dari kekosongan jiwa dan kesepian batin...",
+                "Halo Nesty, Ini kubuat untukmu, hanya untukmu, semoga kamu suka, seperti biasa, kalau gak butuh... ya buang aja."
+            ];
+
+            renderPhoto();
+
+            function cycleSentences(index) {
+                if (index >= sentences.length) {
+                    preloaderText.style.minHeight = '0px';
+                    preloaderText.style.display = 'none';
+                    startExperienceBtn.style.display = 'inline-block';
+                    setTimeout(() => {
+                        startExperienceBtn.style.opacity = '1';
+                    }, 100);
+                    return;
+                }
+
+                preloaderText.innerText = sentences[index];
+                preloaderText.style.opacity = '1';
+                
+                setTimeout(() => {
+                    preloaderText.style.opacity = '0';
+                    setTimeout(() => {
+                        cycleSentences(index + 1);
+                    }, 1000);
+                }, 4500);
+            }
+            cycleSentences(0);
+
+            startExperienceBtn.addEventListener('click', () => {
+                audio.play().catch(e => console.error("Autoplay ditolak oleh browser:", e));
+                if (state.floatingInterval) clearInterval(state.floatingInterval);
+                state.floatingInterval = setInterval(createFloatingElement, 800);
+
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                    mainContainer.style.display = 'block';
+                    showPage('start-page');
+                }, 1000);
+            });
+        });
+        
+        document.getElementById('start-quiz-btn').addEventListener('click', startQuiz);
+        document.getElementById('retry-quiz-btn').addEventListener('click', resetQuiz);
+        document.getElementById('open-treasure-btn').addEventListener('click', () => {
+            showPage('final-content-page');
+            initMessagePage();
+        });
+        
+        document.getElementById('next-message-btn').addEventListener('click', () => {
+            if (state.currentMessageIndex < MESSAGES_DATA.length - 1) {
+                state.currentMessageIndex++;
+                renderCurrentMessage();
+            } else {
+                document.getElementById('messages-section').style.display = 'none';
+                document.getElementById('remaining-content').style.display = 'block';
+            }
+        });
+        
+        document.getElementById('prev-message-btn').addEventListener('click', () => {
+            if (state.currentMessageIndex > 0) {
+                state.currentMessageIndex--;
+                renderCurrentMessage();
+            }
+        });
+
+        document.getElementById('next-photo-btn').addEventListener('click', () => {
+            state.photo_index = (state.photo_index + 1) % TOTAL_PHOTOS;
+            renderPhoto();
+        });
+
+        document.getElementById('prev-photo-btn').addEventListener('click', () => {
+            state.photo_index = (state.photo_index - 1 + TOTAL_PHOTOS) % TOTAL_PHOTOS;
+            renderPhoto();
+        });
+
+        document.getElementById('secret-message-btn').addEventListener('click', (e) => {
+            const btn = e.target;
+            const content = document.getElementById('secret-message-content');
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Menyusun kata...';
+            setTimeout(() => {
+                content.innerHTML = `Nesty, Kata bangga, senang, mungkin tidak bisa lagi mewakilkan, tapi satu hal yang ku tau. Gausah pamer sama Dunia yang bahkan nggak tahu usahamu, ke aku aja, seseorang yang selalu berharap jadi Duniamu. Karena aku dan kamu adalah kita, dan kita lebih dari apapun, bahkan melewati waktu itu sendiri. Bahkan sampai kini, aku masih salah tingkah pabila melihat senyum manismu itu. 💖`;
+                content.classList.remove('d-none');
+                btn.style.display = 'none';
+            }, 2000);
+        });
+        
+        document.getElementById('reply-btn').addEventListener('click', (e) => {
+            const defaultMessage = "Halo Nesty, aku adalah web yang tadi, ubah pesan ini sesuai apa yang kamu rasa & Pikirkan soal hadiah dari Edwin ya, Sttt jangan kasih tau Edwin, dia buat kode ini 800 Line koding sendiri tau hihi";
+            const encodedMessage = encodeURIComponent(defaultMessage);
+            const whatsappUrl = `https://wa.me/6281221874008?text=${encodedMessage}`;
+            document.getElementById('whatsapp-link').href = whatsappUrl;
+            const replyModalEl = document.getElementById('replyModal');
+            const replyModal = new bootstrap.Modal(replyModalEl);
+            
+            replyBtn = e.target;
+            replyBtn.disabled = true;
+
+            replyModalEl.addEventListener('hidden.bs.modal', () => {
+                replyBtn.disabled = false;
+            }, { once: true }); // Opsi { once: true } agar event listener ini hanya berjalan sekali
+
+            replyModal.show();
+        });
+    </script>
+</body>
+</html>
