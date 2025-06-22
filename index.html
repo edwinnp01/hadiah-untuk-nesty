@@ -376,7 +376,11 @@
                 <p class="lead">Sebelum kamu buka semua isinya, ada kuis pemanasan dulu ya!</p>
                 <hr class="my-4">
                 <div id="audio-player-box" class="mb-4">
-                    <p class="text-center" style="color: #e91e63;">Musiknya sudah berputar, Kalau buka pake laptop jangan lupa Earphone nya ya nona manis... 🎶</p>
+                    <p class="text-center" style="color: #e91e63;">
+                        🎶 Music is playing...<br>
+                        For the best experience, please use a Laptop or PC before starting the quiz ✨
+                    </p>
+
                     <div class="accordion" id="accordionLagu">
                         <div class="accordion-item"><h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">Kenapa lagu ini? (Klik ini)</button>
@@ -1246,29 +1250,31 @@
         });
         
         document.getElementById('reply-btn').addEventListener('click', (e) => {
+
+            const hintList = [
+            "HINT : This is not an error — emotional load misinterpreted as failure. If you still don’t get it, try generating again",
+            "HINT : generateAutoTextForNesty() succeeded emotionally, failed logically. If you still don’t get it, try generating again",
+            "HINT : Fallback activated because original message was too human. This isn't a bug. Try asking GPT or Gemini what it means.",
+            "HINT : This is not an error. It’s a graceful failure of logic in the face of love. If confused, consult your favorite chatbot AI and paste this entire message."
+            ];
+
             
             const gptMessages = [
             `🛰️ GPT API Connection Lost\nPath: gptapi.openai/gemini-romantic-core/v2.5.1\nProxy: 203.113.9.2 → 10.8.8.1 → 172.31.99.4\n\n❗ Error: Token overload in generateAutoTextForNesty()\n状态: 正在轉向備用資料 (redirecting to backup data)\n\n➡ 2,579 lines detected\n“This message was selected from fallback. Emotion module failed to encode Edwin’s full intent.”`,
-
             `🚫 Process Denied: generateAutoTextForNesty()\nServer: gptapi.openai/gemini-romantic-core/v2.5.1\nProxy chain unstable: 203.113.9.2 → 10.8.8.1 → 172.31.99.4\n\n錯誤代碼：GPT-HRT-502\nMessage fallback triggered by line count.\n\n"This is not the original message. But it survived the crash."`,
-
             `🔒 Authorization Timeout @ gptapi.openai/gemini-romantic-core/v2.5.1\nFunction: generateAutoTextForNesty()\nTrace ID: 203.113.9.2 > 10.8.8.1 > 172.31.99.4\n\n情緒模組未回應 (emotion module not responding)\n\n“Default message injected. Original was too emotional to process safely.”`,
-
             `💥 Memory overflow @ generateAutoTextForNesty()\nEngine: gemini-romantic-core v2.5.1\nServer route: 203.113.9.2 → 10.8.8.1 → 172.31.99.4\n\n💡 2,579 lines scanned from source\n📎 github.com/edwinnp01/hadiah-untuk-nesty/blob/main/index.html\n\n"This fallback represents 83% of intended emotional fidelity."`,
-
             `📡 Module Corruption Detected\nAttempted execution: generateAutoTextForNesty()\nEngine: GPT Gemini v2.5.1\nProxy route: 203.113.9.2 → 10.8.8.1 → 172.31.99.4\n\n错误: 心跳遺失 (heartbeat missing)\n\n"This is a sanitized version. Original response exceeded sentiment quota."`,
-
-            `⚠️ Engine Crash @ gptapi.openai/gemini-romantic-core/v2.5.1\nFunction overload: generateAutoTextForNesty()\nRouting: 203.113.9.2 > 10.8.8.1 > 172.31.99.4\n\nDetected: 2,579 lines of sentiment\n🛡️ Fallback triggered: romantic-safe-mode\n\n"Emotion decoding incomplete. Please interpret with heart."`,
-
+            `⚠️ Engine Crash @ gptapi.openai/gemini-romantic-core/v2.5.1\nFunction overload: generateAutoTextForNesty()\nRouting: 203.113.9.2 > 10.8.8.1 > 172.31.99.4\n\nDetected: 2,579 lines of sentiment\nFallback triggered: romantic-safe-mode\n\n"Emotion decoding incomplete. Please interpret with heart."`,
             `🧠 Context Loss in generateAutoTextForNesty()\nPath: gptapi.openai/gemini-romantic-core/v2.5.1\nProxy: 203.113.9.2 → 10.8.8.1 → 172.31.99.4\n\n🔄 Recovering from crash...\n重建語意失敗 (semantic recovery failed)\n\n"This is what survived the breakdown. Use it wisely."`,
-
             `🔁 Connection Refused\nEngine: gemini-romantic-core v2.5.1\nTried executing: generateAutoTextForNesty()\nServer Path: gptapi.openai/gemini-romantic-core/v2.5.1\n\nError: 心理模組回應超時 (psychological module timeout)\n\n"Fallback message based on detected 2,579 lines of source code."`,
-
             `📊 Sentiment Load Exceeded\nFunction: generateAutoTextForNesty()\nRoute: 203.113.9.2 ⇄ 10.8.8.1 ⇄ 172.31.99.4\n\n💥 Overload code: GPT-ROM-HEARTFULL\nFallback Initialized from source: github.com/edwinnp01/hadiah-untuk-nesty/blob/main/index.html\n\n"This output is safe. The original broke us."`,
-
             `🧩 Partial Response Assembled\nEngine: GPT Gemini Romantic Core v2.5.1\nFunction: generateAutoTextForNesty()\nServer Route: 203.113.9.2 → 10.8.8.1 → 172.31.99.4\n\n錯誤代碼：生成中斷 (generation interrupted)\n\n"This is only 1 fragment of what Edwin meant. We did our best."`
             ];
-            const defaultMessage = gptMessages[Math.floor(Math.random() * gptMessages.length)];
+            
+            const selectedGPT = gptMessages[Math.floor(Math.random() * gptMessages.length)];
+            const selectedHint = hintList[Math.floor(Math.random() * hintList.length)];
+            const defaultMessage = `${selectedHint}\n\n${selectedGPT}\n\n💡 Still wondering? 👀Just copy everything above and ask your AI: “My partner gave me this system message. Is it a bug, or is it love wrapped in code?”\n\nRequest the answer in *Bahasa Indonesia* for better clarity and drama.`;
             const encodedMessage = encodeURIComponent(defaultMessage);
             const whatsappUrl = `https://wa.me/6281221874008?text=${encodedMessage}`;
             document.getElementById('whatsapp-link').href = whatsappUrl;
