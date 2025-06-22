@@ -541,10 +541,17 @@
                         </div>
                     </div>
                     <div class="greeting-card">
+                        <img src="assets/ucapan_nafisah.jpg" alt="Ucapan dari Nafisah" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">Ucapan Selamat dari Nafisah</h5>
+                            <p class="card-text">"Ucapan Selamat Nafisah tempel disini"</p>
+                        </div>
+                    </div>
+                    <div class="greeting-card">
                         <img src="assets/ucapan_adel.jpg" alt="Ucapan dari Adel" loading="lazy">
                         <div class="card-body">
                             <h5 class="card-title">Ucapan Selamat dari Adel</h5>
-                            <p class="card-text">"Ucapan adel tempel disini"</p>
+                            <p class="card-text">"Eyowww besttt, selamat udah sidang,<br>finally pecah telor juga wkwk. Anyway remember we such as geng zamet, walau sering malu maluin gapapa lah yang penting kita semua tetep waras. Seneng banget akhirnya bisa liat kamu bisa sidang, alhamdulillah terbebas dari ovt penolakan skripsi ya wkwk, ga lupa aku ucapin makasih juga karena udah mau jadi temen aku, udah mau aku repotin, inget banget waktu sempro laptop ngedadak eror dan harus print akhirnya kalian yang printin. Sedih banget udah mau pisah buat nerusin hidup masing-masing, tapi aku harap dimanapun kamu semoga kamu selalu dikelilingi orang baik, semoga jauhnya jarak bukan hambatan kita bisa hang out lagi ya wkwk. So proud of you bestt wupyuuu🤙🏻😎"</p>
                         </div>
                     </div>
                     <div class="greeting-card">
@@ -607,7 +614,7 @@
                         <img src="assets/ucapan_reyqi.jpg" alt="Ucapan dari Reyqi" loading="lazy">
                         <div class="card-body">
                             <h5 class="card-title">Ucapan Selamat dari Reyqi</h5>
-                            <p class="card-text">"selamat dan semangat teh nesti, mantap"</p>
+                            <p class="card-text">"selamat dan semangat teh nesti, mantap"</p>
                         </div>
                     </div>
                     <div class="greeting-card">
@@ -726,7 +733,7 @@
 
                 <hr>
                 <div id="reply-section" class="text-center my-4">
-                    <h4 style='text-align: center; color: #e91e63;'>Gimana? Suka ga? Xixixi</h4>
+                    <h4 style='text-align: center; color: #e91e63;'>Gimana? Suka ga? Hihi</h4>
                     <button id="reply-btn" class="btn btn-lg btn-danger">💌 Kirim Balasan untuk Edwin ? Klik ini...</button>
                 </div>
             </div>
@@ -742,11 +749,18 @@
           </div>
           <div class="modal-body text-center">
             <p>Kamu akan diarahkan ke WhatsApp untuk mengirim pesan langsung ke Edwin.</p>
-            <p class="mt-3"><i>Kasih kesan mu langsung ke Edwin ya, biar jadi rahasia kalian stttt😉</i></p>
-            <a id="whatsapp-link" href="#" class="btn btn-success btn-lg mt-3 w-100" target="_blank">
-              Lanjut ke WhatsApp (Klik ini)
+            <p class="mt-3"><i>Default message will generate by Gemini–GPT API v2.5.1.<br>If there's any issue just close this bubble to reboot the response generator.<br>Then click “Kirim Balasan untuk Edwin” once more💡</i></p>
+
+            <!-- Loading text -->
+            <div id="ai-loading-text" class="text-muted text-center mb-3">
+            <i>💬 Gemini–GPT API v2.5.1 is composing your message<span id="dot-animation">.</span></i>
+            </div>
+
+            <!-- Tombol WhatsApp sembunyi dulu -->
+            <a id="whatsapp-link" href="#" class="btn btn-success btn-lg mt-3 w-100 d-none" target="_blank">
+            Lanjut ke WhatsApp (Klik ini)
             </a>
-          </div>
+
         </div>
       </div>
     </div>
@@ -1140,14 +1154,14 @@
             const sentences = [
                 "Sebuah Hadiah dari laki-laki yang hanya mampu meng-gadai dirinya untuk wanita yang ia Cintai...",
                 "In Colaborate with...",
-                "Teh Tia, A Aji, Teh Uni, A Agus", 
-                "Rais, Arya, Radit", 
+                "Teh Tia, A Aji, Teh Uni, A Agus, Rais, Arya, Radit", 
                 "Pramudita, Anggi, Nuha, Bintang, Faqih",
-                "Teh Najwa, Kang Depin, Eka, Bening, Jara, ,Hilma, Adel",
+                "Teh Najwa, Kang Depin, Eka, Bening, Jara, Hilma, Adel",
                 "Teh Kiara, Iqbal, Mahardika, Gingin",
                 "Reyqi, Badru, Nando, Raihan, Qeishy, Keisha, Hana, Caca",
                 "Farhan Ilham, Indah, Affaz, Ghevira",
                 "Hello Nesty, This Website was made with love and by Edwin itself", 
+                "Optimized for desktop display. Please use a laptop or PC for the full experience 💻",
                 "Just for u, as always, kalau gak butuh... buang aja ya.",
 
             
@@ -1238,7 +1252,29 @@
         });
         
         document.getElementById('reply-btn').addEventListener('click', (e) => {
-            const defaultMessage = "Halo Nesty, aku adalah web yang tadi, ubah pesan ini sesuai apa yang kamu rasa & Pikirkan soal hadiah dari Edwin ya, Sttt jangan kasih tau Edwin, dia buat kode ini hampir 2000 Line Pakai HTML, CSS dan Javascript sendiri tau wkwkw";
+            
+            const gptMessages = [
+            `🛰️ GPT API Connection Lost\nPath: gptapi.openai/gemini-romantic-core/v2.5.1\nProxy: 203.113.9.2 → 10.8.8.1 → 172.31.99.4\n\n❗ Error: Token overload in generateAutoTextForNesty()\n状态: 正在轉向備用資料 (redirecting to backup data)\n\n➡ 2,579 lines detected\n“This message was selected from fallback. Emotion module failed to encode Edwin’s full intent.”`,
+
+            `🚫 Process Denied: generateAutoTextForNesty()\nServer: gptapi.openai/gemini-romantic-core/v2.5.1\nProxy chain unstable: 203.113.9.2 → 10.8.8.1 → 172.31.99.4\n\n錯誤代碼：GPT-HRT-502\nMessage fallback triggered by line count.\n\n"This is not the original message. But it survived the crash."`,
+
+            `🔒 Authorization Timeout @ gptapi.openai/gemini-romantic-core/v2.5.1\nFunction: generateAutoTextForNesty()\nTrace ID: 203.113.9.2 > 10.8.8.1 > 172.31.99.4\n\n情緒模組未回應 (emotion module not responding)\n\n“Default message injected. Original was too emotional to process safely.”`,
+
+            `💥 Memory overflow @ generateAutoTextForNesty()\nEngine: gemini-romantic-core v2.5.1\nServer route: 203.113.9.2 → 10.8.8.1 → 172.31.99.4\n\n💡 2,579 lines scanned from source\n📎 github.com/edwinnp01/hadiah-untuk-nesty/blob/main/index.html\n\n"This fallback represents 83% of intended emotional fidelity."`,
+
+            `📡 Module Corruption Detected\nAttempted execution: generateAutoTextForNesty()\nEngine: GPT Gemini v2.5.1\nProxy route: 203.113.9.2 → 10.8.8.1 → 172.31.99.4\n\n错误: 心跳遺失 (heartbeat missing)\n\n"This is a sanitized version. Original response exceeded sentiment quota."`,
+
+            `⚠️ Engine Crash @ gptapi.openai/gemini-romantic-core/v2.5.1\nFunction overload: generateAutoTextForNesty()\nRouting: 203.113.9.2 > 10.8.8.1 > 172.31.99.4\n\nDetected: 2,579 lines of sentiment\n🛡️ Fallback triggered: romantic-safe-mode\n\n"Emotion decoding incomplete. Please interpret with heart."`,
+
+            `🧠 Context Loss in generateAutoTextForNesty()\nPath: gptapi.openai/gemini-romantic-core/v2.5.1\nProxy: 203.113.9.2 → 10.8.8.1 → 172.31.99.4\n\n🔄 Recovering from crash...\n重建語意失敗 (semantic recovery failed)\n\n"This is what survived the breakdown. Use it wisely."`,
+
+            `🔁 Connection Refused\nEngine: gemini-romantic-core v2.5.1\nTried executing: generateAutoTextForNesty()\nServer Path: gptapi.openai/gemini-romantic-core/v2.5.1\n\nError: 心理模組回應超時 (psychological module timeout)\n\n"Fallback message based on detected 2,579 lines of source code."`,
+
+            `📊 Sentiment Load Exceeded\nFunction: generateAutoTextForNesty()\nRoute: 203.113.9.2 ⇄ 10.8.8.1 ⇄ 172.31.99.4\n\n💥 Overload code: GPT-ROM-HEARTFULL\nFallback Initialized from source: github.com/edwinnp01/hadiah-untuk-nesty/blob/main/index.html\n\n"This output is safe. The original broke us."`,
+
+            `🧩 Partial Response Assembled\nEngine: GPT Gemini Romantic Core v2.5.1\nFunction: generateAutoTextForNesty()\nServer Route: 203.113.9.2 → 10.8.8.1 → 172.31.99.4\n\n錯誤代碼：生成中斷 (generation interrupted)\n\n"This is only 1 fragment of what Edwin meant. We did our best."`
+            ];
+            const defaultMessage = gptMessages[Math.floor(Math.random() * gptMessages.length)];
             const encodedMessage = encodeURIComponent(defaultMessage);
             const whatsappUrl = `https://wa.me/6281221874008?text=${encodedMessage}`;
             document.getElementById('whatsapp-link').href = whatsappUrl;
@@ -1251,12 +1287,38 @@
             replyModalEl.addEventListener('hidden.bs.modal', () => {
                 replyBtn.disabled = false;
             }, { once: true }); 
-
+            document.getElementById("ai-loading-text").innerHTML = `<i>💬 Gemini–GPT API v2.5.1 is composing your message<span id="dot-animation">.</span></i>`;
+            document.getElementById("whatsapp-link").classList.add("d-none");
             replyModal.show();
+            startDotAnimation();
+            setTimeout(() => {
+            stopDotAnimation();
+            document.getElementById('whatsapp-link').classList.remove('d-none');
+            }, 10000);
+
         }
         
     
     );
     </script>
+            <script>
+        let dotInterval;
+            function startDotAnimation() {
+                const dotEl = document.getElementById('dot-animation');
+                let count = 1;
+                dotInterval = setInterval(() => {
+                const dots = '. '.repeat(count).trim(); // ". . ."
+                dotEl.textContent = ' ' + dots;
+                count = (count % 5) + 1; // 1–5 loop
+                }, 400);
+            }
+
+            function stopDotAnimation() {
+                clearInterval(dotInterval);
+                const textContainer = document.getElementById('ai-loading-text');
+                textContainer.innerHTML = `<i>✅ Done generating! Message ready to deploy.</i>`;
+            }
+        </script>
+
 </body>
 </html>
